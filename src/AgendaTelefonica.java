@@ -15,14 +15,12 @@ public class AgendaTelefonica {
         novoContato.setNumeroTelefone(scan.nextLine());
 
         boolean contatoExistente = false;
-
         for (Contato contato : agendaTelefonica) {
             if (contato.getNome().equals(novoContato.getNome())) {
                 contatoExistente = true;
                 break;
             }
         }
-
         if (contatoExistente) {
             System.out.println("Esse contato já existe na lista!");
         } else {
@@ -31,7 +29,9 @@ public class AgendaTelefonica {
         }
     }
 
-    public void removerContato(String nome){
+    public void removerContato(){
+        System.out.println("Digite o nome do contato a ser excluído: ");
+        String nome = scan.nextLine();
         Iterator<Contato> iterator = agendaTelefonica.iterator();
         while (iterator.hasNext()) {
             Contato contato = iterator.next();
@@ -42,11 +42,19 @@ public class AgendaTelefonica {
         }
     }
 
-    public void atualizarContato(String nome, Contato novoContato){
+    public void atualizarContato(){
+        System.out.println("Digite o nome do contato a ser alterado: ");
+        String nomeParaAlterar = scan.nextLine();
+        System.out.println("Digite o nome do contato a ser adicionado: ");
+        Contato contatoAlterado = new Contato();
+        contatoAlterado.setNome(scan.nextLine());
+        System.out.println("Digite o número de telefone do novo contato: ");
+        contatoAlterado.setNumeroTelefone(scan.nextLine());
+        System.out.println("Contato adicionado com sucesso.\n\n");
         for (int i = 0; i < agendaTelefonica.size(); i++) {
             Contato contato = agendaTelefonica.get(i);
-            if (contato.getNome().equals(nome)) {
-                agendaTelefonica.set(i, novoContato);
+            if (contato.getNome().equals(nomeParaAlterar)) {
+                agendaTelefonica.set(i, contatoAlterado);
                 break;
             }
         }

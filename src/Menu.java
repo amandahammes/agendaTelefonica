@@ -29,7 +29,7 @@ public class Menu {
                 excluirContatoMenu();
                 break;
             case 3:
-                alterarContatoMenu();
+                atualizarContatoMenu();
                 break;
             case 4:
                 listarContatoMenu();
@@ -48,22 +48,12 @@ public class Menu {
     }
 
     public void excluirContatoMenu(){
-        System.out.println("Digite o nome do contato a ser excluído: ");
-        String nome = scan.nextLine();
-        agendaTelefonica.removerContato(nome);
+        agendaTelefonica.removerContato();
         mostrarMenu();
     }
 
-    public void alterarContatoMenu(){
-        System.out.println("Digite o nome do contato a ser alterado: ");
-        String nomeParaAlterar = scan.nextLine();
-        System.out.println("Digite o nome do contato a ser adicionado: ");
-        Contato contatoAlterado = new Contato();
-        contatoAlterado.setNome(scan.nextLine());
-        System.out.println("Digite o número de telefone do novo contato: ");
-        contatoAlterado.setNumeroTelefone(scan.nextLine());
-        agendaTelefonica.atualizarContato(nomeParaAlterar, contatoAlterado);
-        System.out.println("Contato adicionado com sucesso.\n\n");
+    public void atualizarContatoMenu(){
+        agendaTelefonica.atualizarContato();
         mostrarMenu();
     }
     public void listarContatoMenu(){
