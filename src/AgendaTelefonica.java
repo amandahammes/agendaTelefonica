@@ -61,13 +61,33 @@ public class AgendaTelefonica {
             }
         }
     }
+    public void buscarContato(){
+        System.out.println("Nome do contato: ");
+        String nomeParaEncontrar = scan.nextLine();
+        boolean encontrado = false;
 
+        for (Contato contato : agendaTelefonica) {
+            if (contato.getNome().equalsIgnoreCase(nomeParaEncontrar)) {
+                System.out.println(corVerde + "Contato: " + reset);
+                System.out.println("Nome: " + contato.getNome());
+                System.out.println("Telefone: " + contato.getNumeroTelefone());
+                encontrado = true;
+                break;
+            }
+        }
+
+        if (!encontrado) {
+            System.out.println(corVerde + "Contato não encontrado." + reset);
+        }
+
+    }
     public void listarContatosAgenda(){
         if(agendaTelefonica.size() != 0){
+            System.out.println(corVerde + "\n********* LISTA DE CONTATOS *********" + reset);
             for (Contato contato : agendaTelefonica) {
-                System.out.println("********* LISTA DE CONTATOS *********\n\n");
                 System.out.println("Nome: " + contato.getNome() + " === Telefone: " + contato.getNumeroTelefone());
             }
+            System.out.println("");
         } else {
             System.out.println(corVerde + "Lista de contatos vazia."+ reset);
         }
