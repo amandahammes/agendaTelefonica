@@ -6,6 +6,8 @@ public class AgendaTelefonica {
 
     public ArrayList<Contato> agendaTelefonica = new ArrayList<>();
     Scanner scan = new Scanner(System.in);
+    String corVerde = "\u001B[32m";
+    String reset = "\u001B[0m";
 
     public void adicionarContato() {
         Contato novoContato = new Contato();
@@ -22,10 +24,10 @@ public class AgendaTelefonica {
             }
         }
         if (contatoExistente) {
-            System.out.println("Esse contato já existe na lista!");
+            System.out.println(corVerde + "Esse contato já existe na lista!" + reset);
         } else {
             agendaTelefonica.add(novoContato);
-            System.out.println("Contato adicionado com sucesso.\n\n");
+            System.out.println(corVerde + "Contato adicionado com sucesso.\n\n"+ reset);
         }
     }
 
@@ -37,7 +39,7 @@ public class AgendaTelefonica {
             Contato contato = iterator.next();
             if (contato.getNome().equals(nome)) {
                 iterator.remove();
-                System.out.println("Contato removido com sucesso!");
+                System.out.println(corVerde + "Contato removido com sucesso!"+ reset);
             }
         }
     }
@@ -50,7 +52,7 @@ public class AgendaTelefonica {
         contatoAlterado.setNome(scan.nextLine());
         System.out.println("Digite o número de telefone do novo contato: ");
         contatoAlterado.setNumeroTelefone(scan.nextLine());
-        System.out.println("Contato adicionado com sucesso.\n\n");
+        System.out.println(corVerde + "Contato adicionado com sucesso.\n\n"+ reset);
         for (int i = 0; i < agendaTelefonica.size(); i++) {
             Contato contato = agendaTelefonica.get(i);
             if (contato.getNome().equals(nomeParaAlterar)) {
@@ -61,9 +63,13 @@ public class AgendaTelefonica {
     }
 
     public void listarContatosAgenda(){
-        System.out.println("********* LISTA DE CONTATOS *********\n\n");
-        for (Contato contato : agendaTelefonica) {
-            System.out.println("Nome: " + contato.getNome() + " === Telefone: " + contato.getNumeroTelefone());
+        if(agendaTelefonica.size() != 0){
+            for (Contato contato : agendaTelefonica) {
+                System.out.println("********* LISTA DE CONTATOS *********\n\n");
+                System.out.println("Nome: " + contato.getNome() + " === Telefone: " + contato.getNumeroTelefone());
+            }
+        } else {
+            System.out.println(corVerde + "Lista de contatos vazia."+ reset);
         }
     }
 }
