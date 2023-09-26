@@ -12,19 +12,26 @@ public class AgendaTelefonica {
     public void adicionarContato() {
         Contato novoContato = new Contato();
         System.out.println("Digite o nome do contato a ser adicionado: ");
-        novoContato.setNome(scan.nextLine());
+        String nomeContato = scan.nextLine().toUpperCase();
+        novoContato.setNome(nomeContato);
         System.out.println("Digite o número de telefone do novo contato: ");
         novoContato.setNumeroTelefone(scan.nextLine());
-
         boolean contatoExistente = false;
+        boolean numeroExistente = false;
         for (Contato contato : agendaTelefonica) {
             if (contato.getNome().equals(novoContato.getNome())) {
                 contatoExistente = true;
                 break;
             }
+            if (contato.getNumeroTelefone().equals(novoContato.getNumeroTelefone())){
+                numeroExistente = true;
+                break;
+            }
         }
         if (contatoExistente) {
             System.out.println(corVerde + "Esse contato já existe na lista!" + reset);
+        } else if (numeroExistente) {
+            System.out.println(corVerde + "Esse número já existe na lista!" + reset);
         } else {
             agendaTelefonica.add(novoContato);
             System.out.println(corVerde + "Contato adicionado com sucesso.\n\n"+ reset);
@@ -75,17 +82,15 @@ public class AgendaTelefonica {
                 break;
             }
         }
-
         if (!encontrado) {
             System.out.println(corVerde + "Contato não encontrado." + reset);
         }
-
     }
     public void listarContatosAgenda(){
         if(agendaTelefonica.size() != 0){
             System.out.println(corVerde + "\n********* LISTA DE CONTATOS *********" + reset);
             for (Contato contato : agendaTelefonica) {
-                System.out.println("Nome: " + contato.getNome() + " === Telefone: " + contato.getNumeroTelefone());
+                System.out.println("Nome: " + contato.getNome() + "  =>  Telefone: " + contato.getNumeroTelefone());
             }
             System.out.println("");
         } else {

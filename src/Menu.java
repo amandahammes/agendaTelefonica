@@ -1,7 +1,6 @@
 import java.util.Scanner;
 
 public class Menu {
-
     protected AgendaTelefonica agendaTelefonica = new AgendaTelefonica();
     public String menu = """
         ***** AGENDA TELEFÔNICA *****
@@ -51,7 +50,6 @@ public class Menu {
                 }
         }
     }
-
     public int sairMenu(){
         System.out.println("Deseja sair da agenda? 1-Sim / 2-Não");
         int resposta = scan.nextInt();
